@@ -12,4 +12,9 @@ export class IssuesService {
   getPendingIssues(): Issue[] {
     return this.issues.filter((i) => !i.completed);
   }
+
+  createIssue(issue: Issue) {
+    issue.issueNo = this.issues.length + 1;
+    this.issues.push(issue);
+  }
 }
