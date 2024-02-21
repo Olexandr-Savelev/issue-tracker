@@ -10,6 +10,8 @@ import { IssuesService } from 'src/app/issues.service';
 export class IssueListComponent implements OnInit {
   issues: Issue[] = [];
   showReportIssue = false;
+  showEditIssue = false;
+  showConfirmDialog = false;
   selectedIssue: Issue | null = null;
 
   constructor(private issuesService: IssuesService) {}
@@ -22,8 +24,14 @@ export class IssueListComponent implements OnInit {
     this.issues = this.issuesService.getPendingIssues();
   }
 
-  onCloseReport() {
-    this.showReportIssue = false;
+  onCloseForm() {
+    if (this.showReportIssue) {
+      this.showReportIssue = false;
+    }
+    if (this.showEditIssue) {
+      this.showEditIssue = false;
+      this.selectedIssue = null;
+    }
     this.getIssues();
   }
 
@@ -33,5 +41,14 @@ export class IssueListComponent implements OnInit {
       this.getIssues();
     }
     this.selectedIssue = null;
+    this.showConfirmDialog = false;
+  }
+
+  onResolve(issue: Issue) {
+    (this.selectedIssue = issue), (this.showConfirmDialog = true);
+  }
+
+  onEdit(issue: Issue) {
+    (this.selectedIssue = issue), (this.showEditIssue = true);
   }
 }

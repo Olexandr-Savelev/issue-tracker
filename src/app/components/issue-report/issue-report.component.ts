@@ -40,7 +40,6 @@ export class IssueReportComponent implements OnInit {
   ngOnInit(): void {
     this.issueForm.controls.title.valueChanges.subscribe((title) => {
       this.suggestions = this.issuesService.getSuggestions(title);
-      console.log(this.suggestions);
     });
   }
 

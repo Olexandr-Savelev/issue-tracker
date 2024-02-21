@@ -1,0 +1,29 @@
+<form clrForm [formGroup]="editForm" (ngSubmit)="editIssue()">
+  <h2>Editing Issue # {{ selectedIssue?.issueNo }}</h2>
+  <clr-input-container>
+    <label for="title">Title</label>
+    <input clrInput name="title" formControlName="title" />
+  </clr-input-container>
+  <clr-textarea-container
+    ><label for="description">Description</label>
+    <textarea
+      clrTextarea
+      name="description"
+      formControlName="description"
+    ></textarea>
+  </clr-textarea-container>
+  <clr-radio-container clrInline>
+    <label>Priority</label>
+    <clr-radio-wrapper>
+      <input type="radio" value="low" clrRadio formControlName="priority" />
+      <label>Low</label>
+    </clr-radio-wrapper>
+    <clr-radio-wrapper>
+      <input type="radio" value="high" clrRadio formControlName="priority" />
+      <label>High</label>
+    </clr-radio-wrapper>
+    <clr-control-error>Priority is required</clr-control-error>
+  </clr-radio-container>
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn" type="button" (click)="formClose.emit()">Cancel</button>
+</form>

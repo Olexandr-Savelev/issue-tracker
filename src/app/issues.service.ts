@@ -18,6 +18,11 @@ export class IssuesService {
     this.issues.push(issue);
   }
 
+  updateIssue(issue: Issue) {
+    const index = this.issues.findIndex((i) => i.issueNo === issue.issueNo);
+    this.issues[index] = issue;
+  }
+
   completeIssue(issue: Issue) {
     const selectedIssue: Issue = {
       ...issue,
